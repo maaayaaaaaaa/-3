@@ -1,0 +1,318 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #f7efe7;
+  --paper: #fffaf4;
+  --paper-soft: rgba(255, 250, 244, 0.86);
+  --ink: #2e2320;
+  --muted: #8f7068;
+  --accent: #b85d75;
+  --accent-soft: #efd0d6;
+  --line: rgba(116, 79, 72, 0.18);
+  --shadow: rgba(90, 57, 48, 0.16);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255, 211, 221, 0.72), transparent 32rem),
+    radial-gradient(circle at bottom right, rgba(238, 201, 170, 0.72), transparent 34rem),
+    linear-gradient(135deg, #f7efe7, #fdf7f1 45%, #f3e4df);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.38;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.28) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent);
+}
+
+.background-glow {
+  position: fixed;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 999px;
+  filter: blur(28px);
+  opacity: 0.36;
+  pointer-events: none;
+  animation: floatGlow 9s ease-in-out infinite;
+}
+
+.glow-one {
+  top: 6%;
+  left: 4%;
+  background: #f0a5b9;
+}
+
+.glow-two {
+  right: 5%;
+  bottom: 8%;
+  background: #e6b78e;
+  animation-delay: -3s;
+}
+
+@keyframes floatGlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(18px, -22px, 0) scale(1.06);
+  }
+}
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  padding: clamp(20px, 4vw, 64px) 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.letter-card {
+  width: min(100%, 820px);
+  position: relative;
+  padding: clamp(28px, 5vw, 70px);
+  border-radius: clamp(22px, 4vw, 38px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.08)),
+    var(--paper-soft);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  box-shadow:
+    0 30px 90px var(--shadow),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  animation: fadeIn 900ms ease both;
+}
+
+.letter-card::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid var(--line);
+  border-radius: calc(clamp(22px, 4vw, 38px) - 10px);
+  pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.letter-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: rgba(184, 93, 117, 0.1);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: "✦";
+  font-size: 0.7rem;
+  opacity: 0.72;
+}
+
+h1 {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: clamp(2.45rem, 8vw, 5.4rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: #35211f;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 2.4vw, 1.12rem);
+  font-weight: 500;
+}
+
+.divider {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  margin: 22px auto 36px;
+  width: min(100%, 420px);
+  color: var(--accent);
+}
+
+.divider span:not(.heart) {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+.heart {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(184, 93, 117, 0.1);
+  font-size: 0.95rem;
+  animation: softPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.74;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.letter-body {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: clamp(1.03rem, 2.6vw, 1.18rem);
+  line-height: 2;
+  letter-spacing: -0.005em;
+}
+
+.letter-body p {
+  margin: 0 0 1.35em;
+  text-wrap: pretty;
+}
+
+.letter-body p:first-child::first-letter {
+  float: left;
+  font-size: 4.2rem;
+  line-height: 0.85;
+  padding: 0.12em 0.12em 0 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.emphasis {
+  margin: 2em 0 !important;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(184, 93, 117, 0.08);
+  border: 1px solid rgba(184, 93, 117, 0.14);
+  color: #6b3342;
+  font-weight: 600;
+  text-align: center;
+  line-height: 2.05;
+}
+
+.signature {
+  margin-top: 2.1em !important;
+  font-size: clamp(1.8rem, 6vw, 3.2rem);
+  line-height: 1.25 !important;
+  text-align: right;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.letter-footer {
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 12px;
+  }
+
+  .letter-card {
+    padding: 30px 22px 34px;
+  }
+
+  .letter-card::before {
+    inset: 9px;
+  }
+
+  .letter-header {
+    margin-top: 12px;
+  }
+
+  .divider {
+    margin-bottom: 28px;
+  }
+
+  .letter-body {
+    line-height: 1.9;
+  }
+
+  .letter-body p {
+    margin-bottom: 1.2em;
+  }
+
+  .letter-body p:first-child::first-letter {
+    font-size: 3.4rem;
+  }
+
+  .emphasis {
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+
+  .signature,
+  .letter-footer {
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
